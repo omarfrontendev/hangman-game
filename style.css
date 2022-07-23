@@ -1,0 +1,314 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Tahoma, Arial;
+}
+
+.container {
+    width: 1000px;
+    margin: 40px auto;
+}
+.game-info {
+    display: flex;
+    justify-content: space-between;
+}
+.game-info .category span {
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #E91E63;
+}
+.row {
+    display: flex;
+}
+.hangman-draw {
+    flex: 1;
+    padding: 20px;
+    background-color: #F8F8F8;
+    height: 324px;
+}
+.hangman-draw .the-draw {
+    position: relative;
+    margin: auto;
+}
+.hangman-draw .the-draw .stand{
+    width: 100px;
+    height: 280px;
+    border-bottom: 4px solid #222;
+    margin: auto 100px;
+    position: relative;
+    display: none;
+}
+.hangman-draw .the-draw .stand::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 4px;
+    background-color: #222;
+    left: 50%;
+    margin-left: -2px;
+    display: none;
+} 
+.hangman-draw .the-draw .stand::before{
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 140px;
+    background-color: #222;
+    left: 50%;
+    margin-left: -2px;
+    top: 10px;
+    display: none;
+}
+.hangman-draw .the-draw .hang{
+    position: absolute;
+    top: 0%;
+    width: 4px;
+    background-color: #222;
+    height: 50px;
+    top: 10px;
+    left: 275px;
+    display: none;
+}
+.hangman-draw .the-draw .rope{
+    position: absolute;
+    top: 56px;
+    left: 237px;
+    border-radius: 50%;
+    border: 4px dashed #222;
+    width: 80px;
+    height: 80px;
+    display: none;
+}
+.hangman-draw .the-draw .the-man .head {
+    position: absolute;
+    top: 72px;
+    left: 252px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid #222;
+    display: none;
+}
+.hangman-draw .the-draw .the-man .head::after {
+    content: '';
+    background-color: #222;
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    margin-left: -2px;
+    width: 4px;
+    height: 110px;
+    display: none;
+}
+.hangman-draw .the-draw .the-man .hands,
+.hangman-draw .the-draw .the-man .legs {
+    position: absolute;
+    width: 4px;
+    height: 50px;
+    background-color: #222;
+    top: 123px;
+    left: 254px;
+    transform: rotate(-53deg);
+}
+.hangman-draw .the-draw .the-man .hands::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 50px;
+    background-color: #222;
+    top: 32px;
+    left: 25px;
+    transform: rotate(-76deg);
+}
+.hangman-draw .the-draw .the-man .hands{
+    display: none;
+}
+.hangman-draw .the-draw .the-man .legs{
+    top: 215px;
+    transform: rotate(53deg);
+}
+.hangman-draw .the-draw .the-man .legs:after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 50px;
+    background-color: #222;
+    top: -32px;
+    left: 22px;
+    transform: rotate(76deg);
+}
+.hangman-draw .the-draw .the-man .legs {
+    display: none;
+}
+.hangman-draw.wrong-1 .stand {
+    display: block;
+}
+.hangman-draw.wrong-2 .stand::after{
+    display: block;
+}
+.hangman-draw.wrong-3 .stand::before{
+    display: block;
+}
+.hangman-draw.wrong-4 .hang {
+    display: block;
+}
+.hangman-draw.wrong-5 .rope {
+    display: block;
+}
+.hangman-draw.wrong-6 .the-man .head {
+    display: block;
+}
+.hangman-draw.wrong-7 .the-man .head::after  {
+    display: block;
+}
+.hangman-draw.wrong-8 .the-man .hands {
+    display: block;
+}
+.hangman-draw.wrong-9 .the-man .legs{
+    display: block;
+} 
+.letters {
+    display: flex;
+    padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    flex: 1;
+    align-content: flex-start;
+}
+.letters.finished{
+    pointer-events: none;
+}
+.letters .clicked {
+    background-color: #222;
+    opacity: .2;
+    pointer-events: none;
+}
+.letters .letter-box {
+    width: 60px;
+    height: 60px;
+    background-color: #00897b;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.letters-guess {
+    display: flex;
+    justify-content: center;
+    min-height: 105px;
+    background: #dddddd82;
+    column-gap: 20px;
+    align-items: center;
+    padding: 0px 20px;
+    margin: 10px auto;
+}
+.letters-guess span {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    font-size: 24px;
+    line-height: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+
+    color: #009688;
+    border: 3px solid;
+}
+.letters-guess span.with-space {
+    position: relative;
+    background-color: transparent;
+    border: none;
+}
+.letters-guess span.with-space::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #222;
+    width: 20px;
+    height: 4px;
+}
+.popup {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: black;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-55%);
+    padding: 25px 100px;
+    width: fit-content;
+}
+.popup span {
+    display: block;
+    background-color: #00897b;
+    width: fit-content;
+    margin: -0 auto;
+    padding: 5px 70px;
+    margin-top: 15px;
+}
+.Succ{
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #004d40;
+    padding: 30px;
+    width: fit-content;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-69%);
+}
+.Succ div{
+    width: fit-content;
+    margin: auto;
+    font-size: 40px;
+    letter-spacing: 9px;
+    background-color: #fff;
+    color: #004d40;
+    padding: 8px 20px;
+    margin-top: 18px;
+}
+.wrong{
+    color: #FFF;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    transform: translate(14px,-34px);
+    position: relative;
+    margin-right: 10px;
+}
+.wrong::after {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%) rotate(40deg);
+background-color: red;
+width: 20px;
+height: 2px;
+
+}
+.wrong::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%) rotate(-40deg);
+background-color: red;
+width: 20px;
+height: 2px;
+}
